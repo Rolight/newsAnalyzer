@@ -2,9 +2,18 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from website.tools import conv_str
+from website.gdata import get_data
 
 import datetime
 import os.path
+
+def get_time_span(request, begin_time, end_time, top_n):
+    try:
+        top_n = int(top_n)
+    except ValueError:
+        raise Http404()
+    gdata = get_data(begin_time, end_time, top_n)
+    return render_to_response('time_span.html', locals())
 
 def hours_ahead(request, offset):
     try:
@@ -24,4 +33,4 @@ def current_datetime(request):
     return HttpResponse(html)
 
 def demo_html(request):
-    return render_to_response('index.html');
+    return render_to_response('demo.html');

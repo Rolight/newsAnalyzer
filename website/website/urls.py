@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from website.views import hello
-from website.views import current_datetime, hours_ahead, demo_html
+from website.views import current_datetime, hours_ahead, demo_html, get_time_span
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^gettime/$', current_datetime),
     url(r'^time/plus/(\d{1,2})/$', hours_ahead),
     url(r'^demo/$', demo_html),
+    url(r'^timespan/(\d{4}-\d{2}-\d{2})/(\d{4}-\d{2}-\d{2})/(\d{1,4})/$', get_time_span),   
 ]
