@@ -1,16 +1,11 @@
-from website.analyzer import nong
+#encoding=utf-8
+from Get_News_Word import Get_News_Word
 import os
 
 def get_data(begin_time, end_time, top_n):
-    nong(begin_time, end_time)
-    filename = begin_time + 'to' + end_time + '.txt'
-    filepath = os.path.join(os.path.dirname(__file__), filename).replace('\\', '/')
-    fp = open(filepath)
-    fstr = fp.read().split('\n')
-    dt = {}
+    ret = Get_News_Word(begin_time, end_time, top_n)
     rstr = ''
-    for i in fstr:
-        now = i.split(' ')
-        tmp = '{text:\"' + i[0] + '\", weight: ' + i[1] + '}, '
+    for (key, value) in ret.items():
+        tmp = '{text:\"' + key.decode('gbk').encode('utf-8') + '\", weight: ' + value.decode('gbk').encode('utf-8') + '}, '
         rstr = rstr + tmp
     return rstr

@@ -1,11 +1,11 @@
 <head>
-   <title>jQCloud Example</title>
+   <title>词频可视化demo</title>
    {% load staticfiles %}
    <link rel="stylesheet" type="text/css" href= "{% static "jqcloud/jqcloud.css" %}"  />
    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
    <script type="text/javascript" src= "{% static "jqcloud/jqcloud-1.0.4.js" %}"></script>
    <script type="text/javascript">
-     var word_array = [{{ gdata }}];
+     var word_array = [{{ gdata | safe }}];
 
      $(function() {
        $("#demo").jQCloud(word_array, {shape:"rectangular", delayedMode: true});
